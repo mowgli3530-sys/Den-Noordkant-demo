@@ -1,0 +1,1015 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brasserie den Noordkant · Helchteren</title>
+<meta name="description" content="Brasserie den Noordkant op het Sint-Trudoplein in Helchteren. Doorlopend keuken van 11u tot 21u30, streekbieren van Ter Dolen, terras en verrassingsmenu. Woensdag gesloten.">
+<link rel="icon" href="images/logo-kompas.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ Tokens ============ */
+:root{
+  --bg:#12100d; --bg-2:#191612; --surface:#201c17; --line:#342e25;
+  --text:#f2ebdf; --muted:#bdb19d; --faint:#8f8575;
+  --gold:#d6ab5a; --gold-2:#e8c27a; --gold-ink:#1a140a; --cream:#efe6d2;
+  --veg:#9cc28a;
+  --radius:14px; --wrap:1160px; --gutter:clamp(16px,4vw,40px);
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --demo-h:36px; --bar-h:68px;
+  --header-h:calc(var(--demo-h) + var(--bar-h)); /* total fixed area at the top */
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 var(--sans);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--gold-2);text-underline-offset:3px}
+a:hover{color:var(--text)}
+:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(2rem,6vw,3.4rem)}
+h3{font-size:1.4rem}
+p{margin:0 0 1em}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.eyebrow{font:600 .75rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.lede{font-size:1.1rem;color:var(--muted);max-width:60ch}
+section{padding-block:clamp(72px,12vw,128px);scroll-margin-top:var(--header-h)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;background:var(--gold);color:var(--gold-ink);padding:10px 14px;border-radius:8px;z-index:100;font-weight:600}
+.skip:focus{top:12px}
+.split>*,.visit>*,.courses>*,.form-grid>*{min-width:0}
+
+/* Photos */
+.photo{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);margin:0}
+.photo img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.photo:hover img{transform:scale(1.03)}
+.photo figcaption{position:absolute;left:12px;bottom:12px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text);background:rgba(18,16,13,.72);backdrop-filter:blur(4px);padding:5px 10px;border-radius:999px}
+
+/* ============ Buttons ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font:600 .95rem/1 var(--sans);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn{white-space:nowrap}
+.btn-gold{background:var(--gold);color:var(--gold-ink)}
+.btn-gold:hover{background:var(--gold-2);color:var(--gold-ink)}
+.btn-ghost{border-color:rgba(242,235,223,.4);color:var(--text);background:rgba(18,16,13,.25)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-2)}
+
+/* ============ Header ============ */
+.demo-banner{position:fixed;inset:0 0 auto;z-index:51;height:var(--demo-h);display:flex;align-items:center;justify-content:center;gap:8px;padding:0 12px;background:var(--gold);color:var(--gold-ink);font:600 .8rem/1.2 var(--sans);text-align:center}
+.demo-banner svg{width:16px;height:16px;flex:0 0 auto}
+@media (max-width:380px){.demo-banner{font-size:.72rem}}
+.site-header{position:fixed;top:var(--demo-h);left:0;right:0;z-index:50;height:var(--bar-h);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.site-header.scrolled{background:rgba(18,16,13,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--line)}
+.site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;white-space:nowrap;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-family:var(--serif);font-size:1.3rem}
+.logo-badge{width:44px;height:44px;border-radius:50%;background:var(--cream);display:grid;place-items:center;flex:0 0 auto;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.logo-badge img{width:40px;height:40px}
+.nav{display:none}
+.nav a{white-space:nowrap;color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;padding:8px 2px}
+.nav a:hover,.nav a[aria-current="true"]{color:var(--gold-2)}
+.header-cta{display:none;min-height:40px;padding:0 18px;font-size:.88rem}
+.header-right{display:flex;align-items:center;gap:10px}
+.header-phone{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:999px;color:var(--text);text-decoration:none;font-weight:600;font-size:.9rem;font-variant-numeric:tabular-nums;background:rgba(18,16,13,.4);white-space:nowrap}
+.header-phone:hover{border-color:var(--gold);color:var(--gold-2)}
+.header-phone svg{width:16px;height:16px;color:var(--gold)}
+@media (max-width:420px){.header-phone .num{display:none}.header-phone{width:44px;padding:0;justify-content:center}}
+@media (min-width:960px) and (max-width:1179px){.header-phone .num{display:none}.header-phone{width:44px;padding:0;justify-content:center}}
+.hero-phone{margin-top:14px;color:var(--muted);font-size:.95rem}
+.hero-phone a{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
+.menu-toggle{width:44px;height:44px;display:grid;place-items:center;background:rgba(18,16,13,.4);border:1px solid var(--line);border-radius:10px;color:var(--text);cursor:pointer}
+.menu-toggle span{display:block;width:18px;height:2px;background:currentColor;position:relative}
+.menu-toggle span::before,.menu-toggle span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:currentColor;transition:transform .25s}
+.menu-toggle span::before{top:-6px}.menu-toggle span::after{top:6px}
+.menu-toggle[aria-expanded="true"] span{background:transparent}
+.menu-toggle[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+.drawer{position:fixed;inset:var(--header-h) 0 0;background:var(--bg);z-index:49;padding:24px var(--gutter) 40px;display:flex;flex-direction:column;gap:4px;transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s;overflow:auto}
+.drawer.open{opacity:1;transform:none;visibility:visible}
+.drawer a{font-family:var(--serif);font-size:1.9rem;color:var(--text);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--line)}
+.drawer .btn{margin-top:24px;font-family:var(--sans);font-size:1rem;border:0}
+@media (min-width:960px){
+  .nav{display:flex;gap:clamp(16px,1.8vw,26px)}
+  .header-cta{display:inline-flex}
+  .menu-toggle,.drawer{display:none}
+}
+
+/* ============ Hero ============ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:calc(var(--header-h) + 40px) 0 clamp(40px,8vw,80px);overflow:hidden;isolation:isolate}
+.hero-media{position:absolute;inset:0;z-index:-1}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:60% 50%;transform:scale(1.06);animation:heroZoom 18s ease-out forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-media::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(18,16,13,.55) 0%,rgba(18,16,13,.15) 30%,rgba(18,16,13,.55) 62%,rgba(18,16,13,.97) 100%),
+  linear-gradient(90deg,rgba(18,16,13,.6),transparent 70%)}
+.hero-logo{position:absolute;right:var(--gutter);top:calc(var(--header-h) + 24px);width:clamp(110px,22vw,220px);aspect-ratio:1;border-radius:50%;background:rgba(239,230,210,.92);display:grid;place-items:center;box-shadow:0 20px 60px rgba(0,0,0,.45);z-index:1}
+.hero-logo img{width:92%;height:92%}
+.hero h1{font-size:clamp(3rem,13vw,7.5rem);font-weight:400;letter-spacing:-.03em;line-height:.95}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero .kicker{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);margin-bottom:18px}
+.hero p.summary{font-size:clamp(1.05rem,2.6vw,1.3rem);color:var(--text);max-width:36ch;margin:22px 0 28px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.tonight{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(25,22,18,.8);backdrop-filter:blur(6px);max-width:560px}
+.status{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.9rem}
+.status i{width:9px;height:9px;border-radius:50%;background:var(--faint)}
+.status.open i{background:#8fd18a;box-shadow:0 0 0 4px rgba(143,209,138,.18)}
+.tonight .hours{color:var(--muted);font-size:.92rem}
+.tonight .hours strong{color:var(--text);font-weight:600}
+
+/* ============ Food strip ============ */
+.strip{padding-block:0;margin-top:-1px}
+.strip-grid{display:grid;grid-auto-flow:column;grid-auto-columns:78%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gutter) 8px;scrollbar-width:none}
+.strip-grid::-webkit-scrollbar{display:none}
+.strip-grid .photo{aspect-ratio:4/5;scroll-snap-align:start}
+@media (min-width:760px){.strip-grid{grid-auto-flow:row;grid-template-columns:repeat(4,1fr);overflow:visible;max-width:var(--wrap);margin-inline:auto}}
+
+/* ============ Menu ============ */
+#menu{background:var(--bg-2);position:relative;isolation:isolate}
+#menu::before{content:"";position:absolute;inset:0 0 auto;height:560px;z-index:-1;background:linear-gradient(180deg,rgba(25,22,18,.82),var(--bg-2)),url("images/interieur-avond.jpg") center/cover}
+.menu-head{display:grid;gap:18px;margin-bottom:28px}
+.menu-tools{position:sticky;top:var(--header-h);z-index:20;background:rgba(25,22,18,.96);backdrop-filter:blur(8px);border-block:1px solid var(--line);margin-inline:calc(var(--gutter) * -1);padding:10px var(--gutter)}
+.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);font:500 .9rem var(--sans);cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.tab:hover:not([aria-selected="true"]){color:var(--text);border-color:var(--faint)}
+.tools-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+.veg-toggle{display:inline-flex;align-items:center;gap:10px;font-size:.88rem;color:var(--muted);cursor:pointer;min-height:36px}
+.veg-toggle input{appearance:none;-webkit-appearance:none;flex:0 0 38px;width:38px;height:22px;min-height:0;padding:0;border:0;border-radius:999px;background:var(--line);position:relative;cursor:pointer;transition:background .2s;margin:0}
+.veg-toggle input::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--text);transition:transform .2s}
+.veg-toggle input:checked{background:var(--veg)}
+.veg-toggle input:checked::after{transform:translateX(16px);background:var(--gold-ink)}
+.legend{font-size:.8rem;color:var(--faint);display:flex;gap:8px 12px;flex-wrap:wrap;align-items:center}
+.panel{padding-top:28px}
+.panel[hidden]{display:none}
+.panel-note{color:var(--muted);font-size:.92rem;border-left:2px solid var(--gold);padding:4px 0 4px 14px;margin:0 0 28px;max-width:70ch}
+/* Columns (not a grid) so each section follows directly under the previous one, without row gaps */
+.courses>.course{break-inside:avoid;margin-bottom:44px}
+@media (min-width:860px){.courses{column-count:2;column-gap:64px}.courses>.course{margin-bottom:48px}}
+.course h3{color:var(--gold-2);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.course h3 small{font:500 .78rem var(--sans);color:var(--muted);letter-spacing:.02em}
+.course .course-note{font-size:.85rem;color:var(--muted);margin:10px 0 4px}
+.dish{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:14px 0;border-bottom:1px dashed rgba(52,46,37,.9)}
+.dish.hide{display:none}
+.dish .nl{font-family:var(--serif);font-size:1.08rem;font-weight:500;color:var(--text)}
+.dish .desc{grid-column:1/-1;color:var(--muted);font-size:.9rem;line-height:1.45}
+.dish .price{font-variant-numeric:tabular-nums;color:var(--gold-2);font-weight:600;white-space:nowrap;text-align:right}
+.prices{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.prices span{font-variant-numeric:tabular-nums;color:var(--gold-2);font-weight:600;white-space:nowrap}
+.prices span em{font-style:normal;color:var(--muted);font-weight:400;font-size:.78rem;margin-right:6px}
+.tags{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.tag{font-size:.72rem;font-weight:600;letter-spacing:.04em;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.tag.v{color:#c9e6bd;border-color:rgba(156,194,138,.55);background:rgba(156,194,138,.08)}
+.tag.time{color:var(--gold-2);border-color:rgba(214,171,90,.4)}
+.feature{border:1px solid rgba(214,171,90,.45);border-radius:var(--radius);overflow:hidden;background:linear-gradient(160deg,rgba(214,171,90,.1),transparent 60%)}
+.feature .feature-body{padding:24px}
+.feature .big{font-family:var(--serif);font-size:2.6rem;color:var(--gold-2);line-height:1;margin:8px 0 10px}
+.feature ul{margin:12px 0 0;padding-left:18px;color:var(--muted)}
+.menu-foot{margin-top:40px;display:grid;gap:12px;color:var(--muted);font-size:.9rem}
+.empty{color:var(--muted);font-style:italic;padding:12px 0;display:none}
+
+/* ============ Story ============ */
+.split{display:grid;gap:40px}
+@media (min-width:900px){.split{grid-template-columns:1.05fr 1fr;gap:72px;align-items:center}}
+.collage{position:relative;padding-bottom:18%}
+.collage .main{aspect-ratio:4/5}
+.collage .inset{position:absolute;width:52%;aspect-ratio:1;right:-4%;bottom:0;border:4px solid var(--bg);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+@media (max-width:899px){.collage .inset{right:0}}
+.pillars{display:grid;gap:28px;margin-top:72px}
+@media (min-width:760px){.pillars{grid-template-columns:repeat(3,1fr)}}
+.pillar .photo{aspect-ratio:4/3;margin-bottom:18px}
+.pillar h3{font-size:1.3rem;margin-bottom:10px;padding-top:14px;border-top:1px solid var(--gold)}
+.pillar p{color:var(--muted);font-size:.95rem}
+.quote{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.25;font-style:italic;color:var(--text);margin:28px 0;padding-left:20px;border-left:2px solid var(--gold)}
+.quote small{display:block;font:400 .85rem var(--sans);font-style:normal;color:var(--muted);margin-top:10px}
+
+/* ============ Terrace band ============ */
+.band{position:relative;min-height:clamp(420px,70vh,640px);display:flex;align-items:flex-end;isolation:isolate;overflow:hidden}
+.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.band::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(18,16,13,.1) 30%,rgba(18,16,13,.92))}
+.band h2{max-width:16ch}
+.band p{color:var(--text);max-width:46ch;margin-top:14px;opacity:.92}
+
+/* ============ Events ============ */
+#events{background:var(--bg-2)}
+.event-gallery{display:grid;gap:12px;grid-template-columns:1fr 1fr;margin:40px 0 16px}
+.event-gallery .photo:first-child{grid-column:1/-1;aspect-ratio:16/9}
+.event-gallery .photo{aspect-ratio:4/3}
+@media (min-width:900px){.event-gallery{grid-template-columns:2fr 1fr 1fr}.event-gallery .photo:first-child{grid-column:auto;aspect-ratio:auto;grid-row:span 1}.event-gallery .photo{aspect-ratio:4/3}}
+.cards{display:grid;gap:16px;margin:32px 0 56px}
+@media (min-width:760px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.card .label{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.card .value{font-family:var(--serif);font-size:2rem;margin:8px 0 6px;line-height:1.1}
+.card p{color:var(--muted);font-size:.93rem;margin:0}
+form{display:grid;gap:16px}
+.form-grid{display:grid;gap:16px}
+@media (min-width:700px){.form-grid{grid-template-columns:1fr 1fr}}
+.field{display:grid;gap:6px}
+.field.full{grid-column:1/-1}
+label{font-size:.88rem;font-weight:500;color:var(--text)}
+label .req{color:var(--gold)}
+input,select,textarea{width:100%;min-height:48px;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:400 1rem var(--sans)}
+textarea{min-height:120px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px rgba(214,171,90,.22)}
+input[aria-invalid="true"]{border-color:#e08a7a}
+.err{color:#f0a596;font-size:.82rem;min-height:1em}
+.hint{color:var(--faint);font-size:.82rem}
+.form-status{padding:14px 16px;border-radius:10px;border:1px solid rgba(143,209,138,.4);background:rgba(143,209,138,.08);color:#cfe9c9;display:none}
+.form-status.show{display:block}
+::placeholder{color:var(--faint)}
+input[type="date"]{color-scheme:dark}
+
+/* ============ Visit / FAQ ============ */
+.visit{display:grid;gap:36px}
+@media (min-width:900px){.visit{grid-template-columns:1fr 1fr;gap:64px}}
+.visit-photos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.visit-photos .photo{aspect-ratio:4/3}
+.map-ph{grid-column:1/-1;aspect-ratio:16/9;border-radius:var(--radius);border:1px solid var(--line);position:relative;overflow:hidden;text-decoration:none;
+  background:
+   linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/32px 32px,
+   linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/32px 32px,
+   #17140f;display:grid;place-items:center;text-align:center;padding:20px}
+.map-ph .pin{width:46px;height:46px;border-radius:50% 50% 50% 0;background:var(--gold);transform:rotate(-45deg);margin:0 auto 14px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.map-ph p{margin:0;color:var(--muted);font-size:.9rem}
+.contact-list{list-style:none;padding:0;margin:24px 0;display:grid;gap:14px}
+.contact-list li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+.contact-list svg{width:20px;height:20px;color:var(--gold);margin-top:3px}
+.phone{font-family:var(--serif);font-size:1.8rem;text-decoration:none;color:var(--text)}
+.phone:hover{color:var(--gold-2)}
+table.hours{width:100%;border-collapse:collapse;margin-top:8px}
+table.hours th,table.hours td{text-align:left;padding:12px 0;border-bottom:1px solid var(--line);font-weight:400}
+table.hours th{color:var(--text)}
+table.hours td{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+table.hours tr.today th,table.hours tr.today td{color:var(--gold-2);font-weight:600}
+table.hours tr.closed td{color:#e2a08f}
+.kitchen{margin-top:14px;color:var(--muted);font-size:.92rem}
+.faq{margin-top:72px}
+.faq-list{margin-top:24px;border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;font-family:var(--serif);font-size:1.2rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);font:300 1.6rem var(--sans);color:var(--gold);transition:transform .2s}
+details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+details .answer{padding:0 0 22px;color:var(--muted);max-width:70ch}
+
+/* ============ Footer ============ */
+footer{position:relative;isolation:isolate;border-top:1px solid var(--line);padding:56px 0 calc(48px + env(safe-area-inset-bottom));color:var(--muted);font-size:.9rem}
+footer::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,var(--bg) 0%,rgba(18,16,13,.9) 100%),url("images/bar-hout.jpg") center/cover}
+footer .wrap{display:grid;gap:24px}
+@media (min-width:760px){footer .cols{grid-template-columns:2fr 1fr 1fr}}
+footer h4{font:600 .75rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+footer p{margin:0 0 6px}
+
+.mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(18,16,13,.95);border-top:1px solid var(--line);backdrop-filter:blur(8px);transform:translateY(110%);transition:transform .3s}
+.mobile-bar.show{transform:none}
+.mobile-bar .btn{flex:1;min-height:46px}
+@media (min-width:960px){.mobile-bar{display:none}}
+@media (max-width:959px){footer{padding-bottom:110px}}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Naar de inhoud</a>
+
+<div class="demo-banner" role="note">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+  <span>Deze pagina is niet-actief en louter een demoversie.</span>
+</div>
+
+<header class="site-header" id="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="den Noordkant, terug naar boven">
+      <span class="logo-badge"><img src="images/logo-kompas.png" alt="" width="40" height="40"></span>
+      <span>den Noordkant</span>
+    </a>
+    <nav class="nav" aria-label="Hoofdmenu">
+      <a href="#menu">Menukaart</a>
+      <a href="#story">Onze zaak</a>
+      <a href="#events">Groepen &amp; feesten</a>
+      <a href="#visit">Bezoek</a>
+      <a href="#faq">Vragen</a>
+    </nav>
+    <div class="header-right">
+      <a class="header-phone" href="tel:+3211757861" aria-label="Bel 011 75 78 61">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+        <span class="num">011 75 78 61</span>
+      </a>
+      <a class="btn btn-gold header-cta" href="#reserve">Reserveer een tafel</a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu openen"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="drawer" id="drawer" aria-label="Mobiel menu">
+  <a href="#menu">Menukaart</a>
+  <a href="#story">Onze zaak</a>
+  <a href="#events">Groepen &amp; feesten</a>
+  <a href="#visit">Bezoek &amp; openingsuren</a>
+  <a href="#faq">Veelgestelde vragen</a>
+  <a class="btn btn-gold" href="#reserve">Reserveer een tafel</a>
+</nav>
+
+<main id="main">
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-media"><img src="images/tafel-glazen.jpg" alt="Gedekte tafel met wijnglazen in het warme licht van de brasserie" fetchpriority="high"></div>
+  <div class="hero-logo" aria-hidden="true"><img src="images/logo-kompas.png" alt=""></div>
+  <div class="wrap">
+    <p class="kicker">Brasserie · Sint-Trudoplein · Helchteren</p>
+    <h1 id="hero-title">den <em>Noordkant</em></h1>
+    <p class="summary">Een gezellige brasserie aan het plein in Helchteren. Voor een lekkere maaltijd of gewoon een goed glas, van 's middags tot 's avonds laat.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="#reserve">Reserveer een tafel</a>
+      <a class="btn btn-ghost" href="#menu">Bekijk de kaart</a>
+    </div>
+    <p class="hero-phone">Reserveren kan telefonisch op <a href="tel:+3211757861">011 75 78 61</a></p>
+    <div class="tonight" aria-live="polite">
+      <span class="status" id="status"><i></i><span>Openingsuren laden…</span></span>
+      <span class="hours" id="tonight-hours">Open van 11u tot 23u · vr &amp; za tot middernacht · woensdag gesloten</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOD STRIP ============ -->
+<section class="strip" aria-label="Uit onze keuken">
+  <div class="strip-grid">
+    <figure class="photo"><img src="images/pasta-vis-schaaldieren.jpg" alt="Pasta met dagverse vis en schaaldieren: mosselen, scampi en zalm" loading="lazy"><figcaption>Pasta met dagverse vis &amp; schaaldieren</figcaption></figure>
+    <figure class="photo"><img src="images/tagliatelle-scampi.jpg" alt="Tagliatelle met scampi en tomatensaus" loading="lazy"><figcaption>Tagliatelle met scampi &amp; tomatensaus</figcaption></figure>
+    <!-- Dit bord (gerookte vis, grijze garnalen, appel) komt niet als apart gerecht op de kaart voor: daarom een neutraal onderschrift. -->
+    <figure class="photo"><img src="images/visbord.jpg" alt="Bord met gerookte vis, grijze garnalen, appel en citroen" loading="lazy"><figcaption>Uit onze keuken</figcaption></figure>
+    <figure class="photo"><img src="images/terras-cristal.jpg" alt="Glas Cristal op het zonnige terras" loading="lazy"><figcaption>Een frisse Cristal</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section id="menu" aria-labelledby="menu-title">
+  <div class="wrap">
+    <div class="menu-head">
+      <p class="eyebrow">Menukaart 2026</p>
+      <h2 id="menu-title">Onze kaart</h2>
+      <p class="lede">Brasserieklassiekers, van croques en garnaalkroketten tot steak, mosselen en Brusselse wafels. Prijzen in euro, dienst en btw inbegrepen.</p>
+    </div>
+
+    <div class="menu-tools">
+      <div class="tabs" role="tablist" aria-label="Onderdelen van de kaart" id="tabs"></div>
+      <div class="tools-row">
+        <label class="veg-toggle"><input type="checkbox" id="vegOnly"> Enkel vegetarisch</label>
+        <div class="legend"><span class="tag v">V</span> vegetarisch</div>
+      </div>
+    </div>
+
+    <div id="panels"></div>
+
+    <div class="menu-foot">
+      <p><strong style="color:var(--text)">Allergieën?</strong> U kan zich altijd wenden tot het personeel als u vragen heeft over allergieën.</p>
+      <p>Vanaf 12 personen kan er enkel uit 5 gerechten gekozen worden. Graag 1 rekening per tafel. Dank u voor uw begrip.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section id="story" aria-labelledby="story-title">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="eyebrow">Onze zaak</p>
+        <h2 id="story-title">Een brasserie aan de noordkant van het plein</h2>
+        <p class="lede" style="margin-top:20px">Zin in een lekkere maaltijd, of gewoon een gezellige babbel met een drankje? Bij ons ben je altijd welkom. De keuken is doorlopend open van 11u tot 21u30: lunchen om twee uur of dineren om negen uur, het kan allebei.</p>
+        <p class="quote">"Wil je eens lekker eten, of gezellig iets drinken, kan je altijd bij ons terecht."<small>Onze belofte, al van in het begin.</small></p>      </div>
+      <div class="collage reveal">
+        <figure class="photo main"><img src="images/interieur-bar.jpg" alt="Het interieur van de brasserie met lange houten toog, barkrukken en een geblokte vloer" loading="lazy"></figure>
+        <figure class="photo inset"><img src="images/tafel-dekken.jpg" alt="Een lange tafel wordt gedekt met kaarsjes en bloemen" loading="lazy"></figure>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <article class="pillar reveal">
+        <figure class="photo"><img src="images/terras-cristal.jpg" alt="Een glas bier op het terras onder de parasol" loading="lazy"></figure>
+        <h3>Lokaal in het glas</h3>
+        <p>Onze streekabdijbieren komen van Brouwerij Ter Dolen, hier in Helchteren: blond, donker, tripel, Armand, winter en een alcoholvrije IPA. De Ter Dolen kriek staat zelfs van 't vat.</p>
+      </article>
+      <article class="pillar reveal">
+        <figure class="photo"><img src="images/keuken.jpg" alt="De professionele keuken van den Noordkant" loading="lazy"></figure>
+        <h3>Vers, elke dag</h3>
+        <p>Vis van het moment, pasta met dagverse vis en schaaldieren, verse zalm en mosselen aan seizoenprijs. Aardbeien komen op de kaart als ze in het seizoen zijn.</p>
+      </article>
+      <article class="pillar reveal">
+        <figure class="photo"><img src="images/interieur-avond.jpg" alt="De eetzaal 's avonds bij kaarslicht onder grote lampenkappen" loading="lazy"></figure>
+        <h3>De sfeer</h3>
+        <p>Overdag licht en levendig, 's avonds warm bij kaarslicht. Families, vrienden en vaste gasten zitten hier naast elkaar, met een kindermenu, wafels en pannenkoeken in de namiddag en een ruime drankkaart.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TERRACE BAND ============ -->
+<section class="band" aria-labelledby="terras-title">
+  <img src="images/terras-parasols.jpg" alt="Het terras met rieten stoelen onder grote parasols" loading="lazy">
+  <div class="wrap">
+    <p class="eyebrow">Ons terras</p>
+    <h2 id="terras-title">Bij zonnig weer: buiten</h2>
+    <p>Een beschut terras tussen het groen, onder de grote parasols. Ideaal voor een aperitief, een wafel in de namiddag of een frisse pint.</p>
+  </div>
+</section>
+
+<!-- ============ EVENTS ============ -->
+<section id="events" aria-labelledby="events-title">
+  <div class="wrap">
+    <p class="eyebrow">Groepen &amp; feesten</p>
+    <h2 id="events-title">Met de hele tafel</h2>
+    <p class="lede" style="margin-top:20px">Een verjaardag, familiefeest, teamdiner, vergadering of koffietafel. Vertel ons wat u plant en we maken een voorstel op maat.</p>
+
+    <div class="event-gallery">
+      <figure class="photo"><img src="images/feestzaal-kroonluchter.jpg" alt="Lange feesttafel onder een kristallen kroonluchter" loading="lazy"><figcaption>Feesttafel</figcaption></figure>
+      <figure class="photo"><img src="images/zaal-presentatie.jpg" alt="Zaal met stoelen in rijen en een projectiescherm" loading="lazy"><figcaption>Vergaderen &amp; presenteren</figcaption></figure>
+      <figure class="photo"><img src="images/bar-hout.jpg" alt="Houten toog met barkrukken" loading="lazy"><figcaption>Receptie aan de toog</figcaption></figure>
+    </div>
+
+    <div class="cards">
+      <div class="card reveal">
+        <div class="label">Groepen</div>
+        <div class="value">Aparte zaal</div>
+        <p>Een aparte ruimte voor uw gezelschap, ook geschikt voor een vergadering of presentatie met projectiescherm.</p>
+      </div>
+      <div class="card reveal">
+        <div class="label">Verrassingsmenu</div>
+        <div class="value">€ 50,20 <small style="font-size:1rem;color:var(--muted)">p.p.</small></div>
+        <p>3 gangen, hoofdgerecht naar keuze vis of vlees. Enkel per tafel, te bestellen tot 20u30. Graag vermelden als er voorkeuren of allergieën zijn.</p>
+      </div>
+      <div class="card reveal">
+        <div class="label">Vanaf 12 personen</div>
+        <div class="value">5 gerechten</div>
+        <p>Vanaf 12 personen kiest het gezelschap uit 5 gerechten van de kaart, met 1 rekening per tafel.</p>
+      </div>
+    </div>
+
+    <div class="split" style="align-items:start">
+      <div>
+        <h3 style="font-size:1.8rem;margin-bottom:12px">Vraag een voorstel aan</h3>
+        <p style="color:var(--muted)">We nemen contact met u op om de beschikbaarheid te bevestigen. Liever eerst even bellen? Dat kan op <a href="tel:+3211757861">011 75 78 61</a> tijdens de openingsuren.</p>
+        <p class="hint">Een groepsreservatie is pas definitief nadat wij ze bevestigd hebben.</p>
+      </div>
+      <!-- OPMERKING: geen server. Bij verzenden opent de mailapp van de gast met een kant-en-klare mail naar de zaak.
+           Vervang dit door een formulierdienst of reservatiesysteem wanneer de site live gaat. -->
+      <form id="inquiry" novalidate>
+        <div class="form-grid">
+          <div class="field"><label for="f-name">Naam <span class="req">*</span></label><input id="f-name" name="name" autocomplete="name" required><span class="err" id="e-name"></span></div>
+          <div class="field"><label for="f-email">E-mail <span class="req">*</span></label><input id="f-email" name="email" type="email" autocomplete="email" required><span class="err" id="e-email"></span></div>
+          <div class="field"><label for="f-phone">Telefoon</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"><span class="err"></span></div>
+          <div class="field"><label for="f-date">Gewenste datum <span class="req">*</span></label><input id="f-date" name="date" type="date" required><span class="err" id="e-date"></span></div>
+          <div class="field"><label for="f-guests">Aantal personen <span class="req">*</span></label><input id="f-guests" name="guests" type="number" min="2" inputmode="numeric" required><span class="err" id="e-guests"></span></div>
+          <div class="field"><label for="f-type">Gelegenheid</label>
+            <select id="f-type" name="occasion"><option>Verjaardag</option><option>Familiefeest</option><option>Bedrijf / team</option><option>Vergadering of presentatie</option><option>Communie / lentefeest</option><option>Koffietafel</option><option>Andere</option></select></div>
+          <div class="field full"><label for="f-menu">Interesse in</label>
+            <select id="f-menu" name="menu"><option>Verrassingsmenu (3 gangen, € 50,20 p.p.)</option><option>À la carte (5 gerechten vanaf 12 personen)</option><option>Drankjes &amp; babbelhapjes</option><option>Nog niet zeker</option></select></div>
+          <div class="field full"><label for="f-msg">Wat moeten we nog weten?</label><textarea id="f-msg" name="message" placeholder="Uur, allergieën, dieetwensen, kinderen, kinderstoel…"></textarea></div>
+        </div>
+        <button class="btn btn-gold" type="submit" style="justify-self:start">Aanvraag versturen</button>
+        <div class="form-status" id="form-status" role="status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section id="visit" aria-labelledby="visit-title">
+  <div class="wrap">
+    <p class="eyebrow">Bezoek</p>
+    <h2 id="visit-title">U vindt ons op het Sint-Trudoplein</h2>
+
+    <div class="visit" style="margin-top:40px">
+      <div>
+        <div class="visit-photos">
+          <figure class="photo"><img src="images/gevel-terras.jpg" alt="De gevel van den Noordkant met luifel en terras" loading="lazy"></figure>
+          <figure class="photo"><img src="images/straatbeeld.jpg" alt="Het gebouw van den Noordkant gezien vanaf de straat" loading="lazy"></figure>
+          <a class="map-ph" href="https://www.google.com/maps/search/?api=1&query=Sint-Trudoplein+6%2C+3530+Helchteren" target="_blank" rel="noopener" aria-label="Open Sint-Trudoplein 6/1, Helchteren in Google Maps (nieuw venster)">
+            <div><div class="pin" aria-hidden="true"></div><p><strong style="color:var(--text)">Sint-Trudoplein 6/1, Helchteren</strong><br>Tik voor de routebeschrijving</p></div>
+          </a>
+        </div>
+        <ul class="contact-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            <address style="font-style:normal">Brasserie den Noordkant<br>Sint-Trudoplein 6/1<br>3530 Helchteren (Houthalen-Helchteren)</address></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+            <div><a class="phone" href="tel:+3211757861">011 75 78 61</a><br><span class="hint">Reserveren kan telefonisch tijdens de openingsuren. Ingesproken berichten kunnen we niet beantwoorden.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <a href="mailto:dennoordkant@telenet.be">dennoordkant@telenet.be</a></li>
+        </ul>
+      </div>
+
+      <div id="reserve" style="scroll-margin-top:calc(var(--header-h) + 16px)">
+        <h3 style="font-size:1.8rem">Openingsuren</h3>
+        <table class="hours" id="hours-table" aria-describedby="kitchen-note">
+          <caption class="sr-only">Openingsuren per dag</caption>
+          <tbody></tbody>
+        </table>
+        <p class="kitchen" id="kitchen-note">Keuken doorlopend open van 11u tot 21u30.</p>
+
+        <div class="card" style="margin-top:28px">
+          <div class="label">Reserveer een tafel</div>
+          <p style="margin:10px 0 18px;color:var(--text)">Reserveren doet u het snelst telefonisch tijdens de openingsuren. Een reservatie is alleen geldig als ze bevestigd is.</p>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="tel:+3211757861">Bel 011 75 78 61</a>
+            <a class="btn btn-ghost" href="mailto:dennoordkant@telenet.be?subject=Reservatie">Mail ons</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq" id="faq">
+      <p class="eyebrow">Goed om te weten</p>
+      <h2 style="font-size:clamp(1.8rem,5vw,2.6rem)">Veelgestelde vragen</h2>
+      <div class="faq-list">
+        <details><summary>Kan ik binnenlopen zonder reservatie?</summary>
+          <div class="answer">Zeker, voor een drankje of een hapje kan u altijd bij ons terecht. Wilt u komen lunchen of dineren, zeker in het weekend of met een groep, bel dan best even op <a href="tel:+3211757861">011 75 78 61</a>. Een reservatie is pas geldig als ze bevestigd is, en ingesproken berichten kunnen we niet beantwoorden.</div></details>
+        <details><summary>Zijn kinderen welkom?</summary>
+          <div class="answer">Natuurlijk. Voor kinderen tot 12 jaar is er een kindermenu: frikandel, boulet, bitterballen of kipfilet met frietjes, een kindersteak, en een kinderijsje of ijslolly als dessert.</div></details>
+        <details><summary>Hebben jullie vegetarische gerechten of houden jullie rekening met allergieën?</summary>
+          <div class="answer">Ja. Vegetarische gerechten staan aangeduid met <span class="tag v">V</span>: onder meer de groenteomelet, wokgroenten, pasta met fijne groentjes en pesto, verse ravioli met ricotta en spinazie, kaaskroketten en toast met champignons. Voor allergieën kan u altijd terecht bij ons personeel. Kiest u het verrassingsmenu? Vermeld dan zeker uw voorkeuren of allergieën.</div></details>
+        <details><summary>Wanneer kan ik wafels, pannenkoeken of een omelet bestellen?</summary>
+          <div class="answer">Pannenkoeken van 14u tot 17u. Brusselse wafels op weekdagen tot 18u, in het weekend en op feestdagen van 14u tot 17u. Omeletten op vrijdag, zaterdag en zondag tot 18u.</div></details>
+        <details><summary>Kunnen we apart betalen?</summary>
+          <div class="answer">We vragen vriendelijk om 1 rekening per tafel. Dank u voor uw begrip.</div></details>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap cols">
+    <div>
+      <a class="brand" href="#top"><span class="logo-badge"><img src="images/logo-kompas.png" alt="" width="40" height="40"></span><span>den Noordkant</span></a>
+      <p style="margin-top:14px">Brasserie · Sint-Trudoplein 6/1, 3530 Helchteren</p>
+      <p>Wij danken u voor uw bezoek en tot weerziens.</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p><a href="tel:+3211757861">011 75 78 61</a></p>
+      <p><a href="mailto:dennoordkant@telenet.be">dennoordkant@telenet.be</a></p>
+    </div>
+    <div>
+      <h4>Openingsuren</h4>
+      <p>ma, di, do, zo: 11u – 23u</p>
+      <p>vr, za: 11u – 00u</p>
+      <p>woensdag gesloten</p>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:28px;font-size:.8rem;color:var(--faint)"><p>© <span id="year"></span> den Noordkant · BE 0888 242 262</p></div>
+</footer>
+
+<div class="mobile-bar" id="mobile-bar">
+  <a class="btn btn-ghost" href="tel:+3211757861">Bellen</a>
+  <a class="btn btn-gold" href="#reserve">Reserveren</a>
+</div>
+
+<script>
+/* =========================================================
+   KAARTGEGEVENS — overgenomen uit "Noordkant menu 2026" (Flipsnack).
+   n = naam, d = toelichting (zoals op de kaart), p = prijs of [[label, prijs]],
+   v = vegetarisch (aangeduid op de kaart), t = beschikbaarheid,
+   a = allergenen (optioneel, getoond als labels), extra = supplement.
+   ========================================================= */
+const MENU = [
+ { id:"vooraf", label:"Vooraf & kleine gerechten", courses:[
+   { h:"Vooraf", items:[
+     {n:"Slaatje met verse zalm en grijze garnalen", p:"18,10"},
+     {n:"Scampi natuur", d:"5 stuks", p:"19,10"},
+     {n:"Supplement saus", d:"Wittewijnsaus, preisaus, garnaalsaus, kruidensaus, kruidenboter, look, lookroom", p:"3,40", extra:true},
+     {n:"Carpaccio van ossenhaas", p:"19,40"},
+     {n:"Lookbroodjes", d:"6 stuks", p:"8,40"},
+     {n:"Bruschetta", d:"4 stuks", p:"9,60"},
+   ]},
+   { h:"Babbelhapjes", items:[
+     {n:"Portie kaas", p:"5,90"},{n:"Portie salami", p:"5,90"},{n:"Portie kaas en salami", p:"12,00"},
+     {n:"Portie bitterballen", p:"7,30"},{n:"Portie gemengd", p:"8,90"},{n:"Portie olijven", p:"4,90"},
+     {n:"Portie calamares met verse tartaar", p:"8,90"},
+   ]},
+   { h:"Kleine gerechten", items:[
+     {n:"Witloof met ham en kaassaus", p:"15,90", t:"oktober t/m maart"},
+     {n:"Kaaskroketten", d:"2 stuks", p:"17,40", v:true},
+     {n:"Garnaalkroketten", d:"2 stuks", p:"19,80"},
+     {n:"Duo van kaas- en garnaalkroket", p:"18,60"},
+     {n:"Extra kroket", p:[["kaas","4,20"],["garnaal","6,30"]], extra:true},
+     {n:"Koninginnenhapje klein", p:"17,10"},
+     {n:"Spaghetti klein", p:"11,30"},
+     {n:"Lasagna klein", p:"12,50"},
+     {n:"Scampi natuur", d:"5 stuks · supplement saus 3,40", p:"19,10"},
+     {n:"Wrap met kip", p:"19,30"},
+     {n:"Wrap met rundsreepjes", p:"20,70"},
+     {n:"Supplement", d:"Frieten, kroketten, puree, gratin, pasta, rijst", p:"3,20", extra:true},
+   ]},
+ ]},
+ { id:"hoofd", label:"Hoofdgerechten", courses:[
+   { h:"Vleesgerechten", note:"Kies je bakwijze: bleu (rood vanbinnen, rauw maar warm), saignant (rood vanbinnen), à point (rosé vanbinnen) of bien cuit (volledig doorbakken).", items:[
+     {n:"Filet pur natuur", p:"42,40"},
+     {n:"Steak natuur", p:"33,00"},
+     {n:"Varkenshaasje natuur", p:"30,00"},
+     {n:"Spareribs", p:"29,40"},
+     {n:"Goulash", p:"22,50"},
+     {n:"Stoofvlees", p:"22,50"},
+     {n:"Kipfilet natuur", p:"24,60"},
+     {n:"Koninginnenhapje", p:"22,50"},
+     {n:"Sauzen", d:"Peperroom, champignonroom, béarnaise, stroganoff, provençale, kruidenboter", p:"3,40", extra:true},
+     {n:"Gebakken champignons", p:"4,20", extra:true},
+   ]},
+   { h:"Visgerechten", items:[
+     {n:"Vis van het moment", p:"33,20"},
+     {n:"Visassortiment", p:"36,70"},
+     {n:"Pasta met dagverse vis & schaaldieren", p:"32,70"},
+     {n:"Kabeljauwhaasje", p:"33,00"},
+     {n:"Zalmfilet", p:"27,90"},
+     {n:"Vispannetje", p:"32,50"},
+     {n:"Scampi natuur", d:"9 stuks", p:"31,50"},
+     {n:"Sauzen", d:"Wittewijnsaus, preisaus, garnaalsaus, kruidensaus, kruidenboter, look, lookroom", p:"3,40", extra:true},
+   ]},
+   { h:"Mosselen", note:"Aan seizoenprijs: vraag naar de prijs van vandaag.", items:[
+     {n:"Mosselen natuur", p:[["1,5 kg","seizoenprijs"],["1,1 kg","seizoenprijs"],["0,5 kg","seizoenprijs"]]},
+     {n:"Mosselen look", p:"+2,80"},{n:"Mosselen lookroom", p:"+3,40"},{n:"Mosselen witte wijn", p:"+3,90"},
+     {n:"Mosselen curry", p:"+3,10"},{n:"Mosselen provençale", p:"+4,00"},
+   ]},
+   { h:"Verrassingsmenu", feature:true },
+   { h:"Wok", sub:"Geserveerd met pasta of rijst", items:[
+     {n:"Wokgroenten met kip en curry", p:"23,60"},
+     {n:"Wokgroenten met scampi en curry", p:"26,50"},
+     {n:"Wokgroenten met rundsreepjes & chili", p:"26,50"},
+   ]},
+   { h:"Pasta", items:[
+     {n:"Spaghetti bolognaise", p:"15,10"},
+     {n:"Macaroni ham en kaassaus, gegratineerd", p:"15,10"},
+     {n:"Lasagna", p:"16,80"},
+     {n:"Pasta met dagverse vis & schaaldieren", p:"32,60"},
+     {n:"Verse ravioli gevuld met ricotta, spinazie en tomatensaus", p:"22,70", v:true},
+     {n:"Tagliatelle met scampi & tomatensaus", p:"29,70"},
+     {n:"Tagliatelle met champignons en gerookt spek", p:"22,20"},
+   ]},
+   { h:"Salades", items:[
+     {n:"Gemengde salade", p:"12,60"},
+     {n:"Gerookte spekblokjes, geitenkaas en tijmhoning", p:"22,50"},
+     {n:"Gebakken kip en ananasblokjes met zoete chili", p:"20,30"},
+     {n:"Gebakken scampi met zoete chili", d:"6 stuks", p:"23,60"},
+     {n:"Niçoise", p:"17,50"},
+     {n:"Verse zalm met cocktailsaus", p:"24,20"},
+     {n:"Grijze garnalen, appel, witloof met vinaigrette", p:"29,20"},
+     {n:"Grieks met souvlaki's en feta", p:"26,90"},
+     {n:"Supplement", d:"Frieten, kroketten, puree, gratin, pasta, rijst", p:"3,20", extra:true},
+   ]},
+   { h:"Vegetarisch", items:[
+     {n:"Groenteomelet", p:"12,50", v:true, t:"vr, za, zo tot 18u"},
+     {n:"Wokgroenten met pasta of rijst", p:"19,70", v:true},
+     {n:"Pasta met fijne groentjes en pesto", p:"18,20", v:true},
+     {n:"Verse ravioli gevuld met ricotta, spinazie en tomatensaus", p:"22,80", v:true},
+   ]},
+ ]},
+ { id:"lunch", label:"Croques, soep & lunch", courses:[
+   { h:"Croques", sub:"enkel / dubbel", items:[
+     {n:"Croque uit het vuistje", p:"4,40"},
+     {n:"Croque Monsieur", p:[["enkel","8,80"],["dubbel","13,20"]]},
+     {n:"Croque Madame", p:[["enkel","9,90"],["dubbel","14,70"]]},
+     {n:"Croque Hawaï", p:[["enkel","11,00"],["dubbel","16,80"]]},
+     {n:"Croque Bolognaise", p:[["enkel","12,60"],["dubbel","16,90"]]},
+     {n:"Croque vidée", p:[["enkel","13,20"],["dubbel","17,70"]]},
+     {n:"Croque Noordkant", d:"Spek, mozzarella, pesto, tomaat", p:[["enkel","13,20"],["dubbel","17,70"]]},
+   ]},
+   { h:"Baguettes", items:[
+     {n:"Kaas of ham", p:"5,20"},{n:"Kaas en ham", p:"6,30"},{n:"Tonijnsalade", p:"6,30"},
+     {n:"Smos", d:"Ham, kaas, groenten", p:"9,50"},
+     {n:"Supplement groenten", p:"3,20", extra:true},
+   ]},
+   { h:"Toast", items:[
+     {n:"Champignonroom", p:"16,40", v:true},
+     {n:"Gebakken champignons", p:"16,40", v:true},
+     {n:"Gerookte zalm", p:"17,30"},
+   ]},
+   { h:"Soepen", items:[
+     {n:"Dagsoep", p:"5,40"},{n:"Tomatenroomsoep", p:"5,40"},{n:"Vissoep", p:"10,00"},
+   ]},
+   { h:"Omeletten", sub:"vrijdag, zaterdag, zondag tot 18u", items:[
+     {n:"Groenteomelet", p:"12,50", v:true},
+     {n:"Boerenomelet", d:"Spek, champignons, ui, tomaat, boontjes, paprika", p:"14,20"},
+   ]},
+ ]},
+ { id:"kids", label:"Voor de kids", courses:[
+   { h:"Voor de kids", sub:"tot 12 jaar", items:[
+     {n:"Frikandel met frietjes", p:"12,00"},{n:"Boulet met frietjes", p:"12,00"},
+     {n:"Bitterballen met frietjes", p:"12,00"},{n:"Kipfilet met frietjes", p:"14,30"},
+     {n:"Kindersteak natuur", p:"16,20"},{n:"Kinderijsje", p:"5,90"},{n:"Ijslolly", p:"3,80"},
+   ]},
+ ]},
+ { id:"zoet", label:"Dessert & zoet", courses:[
+   { h:"Dessert", items:[
+     {n:"Trio van dessert", p:"10,00"},{n:"Chocomousse", p:"9,80"},{n:"Chocolade moelleux", p:"11,00"},
+   ]},
+   { h:"Roomijs", items:[
+     {n:"Coupe vanille", p:"8,40"},{n:"Coupe Dame Blanche", p:"9,30"},{n:"Coupe stracciatella", p:"9,30"},
+     {n:"Coupe karamel", p:"9,30"},{n:"Coupe chocolade", p:"8,40"},
+     {n:"Coupe trio van chocolade, vanille en stracciatella", p:"8,60"},
+     {n:"Coupe advocaat", p:"10,80"},{n:"Coupe banaan", p:"11,20"},
+     {n:"Coupe aardbeien", p:"dagprijs", t:"seizoen"},{n:"Coupe vers fruit", p:"13,80"},
+     {n:"Supplement", d:"Slagroom 2,00 · chocoladesaus 1,50", p:"", extra:true},
+   ]},
+   { h:"Brusselse wafels", sub:"weekdagen tot 18u · weekend & feestdagen van 14u tot 17u", items:[
+     {n:"Bloemsuiker", p:"6,60"},{n:"Vers fruit", p:"12,00"},{n:"Banaan", p:"7,50"},
+     {n:"Supplement", d:"Slagroom 2,00 · 1 bol vanille-ijs 3,00 · chocoladesaus 1,50 · advocaat 2,40", p:"", extra:true},
+   ]},
+   { h:"Pannenkoeken", sub:"van 14u tot 17u", items:[
+     {n:"Suiker", d:"Wit, bruin, blond, bloemsuiker", p:"6,90"},
+     {n:"Siroop, karamel, confituur", p:"7,80"},{n:"Banaan", p:"7,90"},{n:"Vers fruit", p:"12,00"},
+     {n:"Supplement", d:"Slagroom 2,00 · 1 bol vanille-ijs 3,00 · chocoladesaus 1,50 · advocaat 2,40", p:"", extra:true},
+   ]},
+   { h:"Gebak", items:[
+     {n:"Appelgebak warm", p:"5,70"},{n:"Ijsgebak", p:"7,20"},
+     {n:"Supplement", d:"1 bol vanille-ijs 3,00 · slagroom 2,00", p:"", extra:true},
+   ]},
+   { h:"Milkshakes", items:[
+     {n:"Vanille", p:"6,40"},{n:"Chocolade", p:"6,40"},{n:"Banaan", p:"7,70"},
+     {n:"Aardbeien", p:"dagprijs", t:"seizoen"},
+   ]},
+ ]},
+ { id:"dranken", label:"Dranken", drinks:true, courses:[
+   { h:"Aperitieven", items:[
+     {n:"Aperitief Noordkant (Dark'n Stormy)", d:"Rum, ginger ale, limoen, munt", p:"11,80"},
+     {n:"Aperitief van het huis", d:"Cava, limoncello", p:"7,50"},
+     {n:"Cava glas", p:"7,10"},{n:"Prosecco glas", p:"7,30"},
+     {n:"Kir", d:"Witte wijn", p:"6,30"},{n:"Kir Royal", d:"Cava", p:"8,90"},
+     {n:"Martini wit / rood / Fiero", p:"5,50"},{n:"Martini Bellini", p:"8,80"},
+     {n:"Negroni", p:"12,60"},{n:"Sherry", p:"5,40"},{n:"Porto wit / rood", p:"5,40"},
+     {n:"Pineau des Charentes", p:"5,40"},{n:"Ricard", p:"7,80"},{n:"Vodka", p:"7,80"},
+     {n:"Bacardi", p:"7,80"},{n:"Gin Bombay", p:"7,80"},{n:"Campari", p:"7,30"},
+     {n:"Apérol Spritz", p:"9,80"},{n:"Crodino met cava", p:"8,80"},{n:"Crodino (alcoholvrij)", p:"4,60"},
+     {n:"Suppl. frisdrank", d:"Zie kaart frisdrank", p:""},
+   ]},
+   { h:"Bieren van 't vat", items:[
+     {n:"Cristal", p:"2,70"},{n:"Cristal 33cl", p:"3,70"},{n:"Cristalpot 50cl", p:"5,40"},
+     {n:"Grimbergen blond", p:[["25cl","3,70"],["33cl","4,50"]]},
+     {n:"Ter Dolen kriek", p:[["25cl","3,40"],["33cl","4,20"]]},
+   ]},
+   { h:"Streek abdijbier", sub:"Brouwerij Ter Dolen, Helchteren", items:[
+     {n:"Ter Dolen blond", p:"4,20"},{n:"Ter Dolen donker", p:"4,20"},{n:"Ter Dolen tripel", p:"4,20"},
+     {n:"Ter Dolen Armand", p:"4,20"},{n:"Ter Dolen winter", p:"4,20"},{n:"Ter Dolen IPA 0.0", p:"4,20"},
+   ]},
+   { h:"Bieren op fles", items:[
+     {n:"Grimbergen dubbel 33cl", p:"4,50"},{n:"Gueuze Mort Subite", p:"3,30"},{n:"Palm", p:"3,10"},
+     {n:"Omer", p:"4,40"},{n:"Vedett", p:"3,80"},{n:"Duvel", p:"4,40"},{n:"Hoegaarden", p:"3,10"},
+     {n:"La Chouffe", p:"4,50"},{n:"Tripel Karmeliet", p:"4,50"},{n:"Wilderen Kanunnik tripel", p:"4,50"},
+     {n:"Cornet", p:"4,50"},{n:"Gouden Carolus tripel", p:"4,50"},{n:"Gouden Carolus whisky infused", p:"4,70"},
+     {n:"Fourchette", p:"4,50"},{n:"Leffe dubbel", p:"4,20"},{n:"Leffe blond", p:"4,20"},{n:"Paix Dieu", p:"5,20"},
+   ]},
+   { h:"Trappisten- & fruitbieren", items:[
+     {n:"Westmalle dubbel", p:"4,20"},{n:"Westmalle tripel", p:"4,40"},{n:"Chimay 8° licht", p:"4,60"},
+     {n:"Chimay 9° donker", p:"4,80"},{n:"Sint Bernardus tripel (ex-trappist)", p:"4,50"},
+     {n:"Kriek Mort Subite", p:"3,20"},{n:"Liefmans fruitesse on the rocks", p:"3,10"},{n:"Grenadine", p:"+0,60"},
+   ]},
+   { h:"Alcoholvrije bieren", items:[
+     {n:"Cristal 0,0", p:"2,70"},{n:"Ter Dolen IPA 0.0", p:"4,20"},{n:"Chouffe 0.0", p:"4,50"},
+     {n:"Liefmans 0.0", p:"3,50"},{n:"Leffe blond 0.0", p:"4,20"},
+   ]},
+   { h:"Wijnkaart", sub:"glas / ½ L / fles", items:[
+     {n:"Belles Vignes, Languedoc, Frankrijk", d:"Witte wijn · Chardonnay, Viognier", p:[["glas","5,50"],["fles","28,90"]]},
+     {n:"King Pin Blanco, Spanje", d:"Witte wijn · Verdejo, Chardonnay, Sauvignon", p:[["fles","32,50"]]},
+     {n:"Les Bertholets, Frankrijk", d:"Witte wijn · Chardonnay", p:[["fles","32,50"]]},
+     {n:"Vigneau (zoet), Côtes de Bergerac, Frankrijk", d:"Witte wijn · Muscadelle, Sauvignon Blanc, Sémillon", p:[["glas","5,60"],["fles","29,70"]]},
+     {n:"Préférence Costières de Nîmes, Frankrijk", d:"Rode wijn · Grenache Noir, Syrah", p:[["glas","5,50"],["fles","28,90"]]},
+     {n:"Finca La Estacada La Mancha, Spanje", d:"Rode wijn · Tempranillo", p:[["fles","30,00"]]},
+     {n:"Sant Andrea Primitivo Cantine Paradiso, Puglia, Italië", d:"Rode wijn · Primitivo", p:[["fles","31,50"]]},
+     {n:"Fontenelles Bergerac Dordogne, Frankrijk", d:"Rosé · Cabernet Franc, Merlot", p:[["glas","5,60"],["fles","29,70"]]},
+     {n:"Cava Grans Moments Penedès, Spanje", d:"Bubbels · Macabeo, Parellada, Xarel·lo", p:[["glas","7,10"],["fles","40,10"]]},
+     {n:"Spumante Valse Contarini, Italië", d:"Bubbels · Glera", p:[["glas","7,30"],["fles","41,50"]]},
+     {n:"Chaudfontaine plat, bruis of half bruis", p:[["glas","2,90"],["½ L","5,80"],["fles","11,60"]]},
+   ]},
+   { h:"Gin tonic & geestrijke dranken", items:[
+     {n:"Gin Bombay limoen", p:"10,50"},{n:"Gin Hendrick's met Fentimans tonic", p:"14,70"},
+     {n:"Gin Wilderen met elderflower tonic", p:"15,30"},{n:"Gin Mare met mediterranean tonic", p:"15,30"},
+     {n:"Whisky William Lawson", p:"7,50"},{n:"Whisky Johnnie Walker red", p:"7,50"},{n:"Whisky J & B", p:"7,50"},
+     {n:"Whisky Jameson", p:"8,30"},{n:"Whisky Chivas Regal 12 years", p:"10,00"},{n:"Whisky Glenfiddich", p:"10,50"},
+     {n:"Cognac Courvoisier***", p:"8,10"},{n:"Cognac Bisquit***", p:"8,50"},{n:"Cognac Martell***", p:"9,00"},{n:"Cognac Remy Martin", p:"10,00"},
+     {n:"Calvados", p:"7,80"},{n:"Jenever Smeets Extra 35°", p:"3,90"},
+   ]},
+   { h:"Likeur & digestieven", items:[
+     {n:"Heeborrel", p:"6,00"},{n:"Jägermeister", p:"5,50"},{n:"Baileys Irish Cream", p:"7,00"},
+     {n:"Grand Marnier", p:"8,00"},{n:"Amaretto Disaronno", p:"7,00"},{n:"Cointreau", p:"7,50"},
+     {n:"Sambuca", p:"7,20"},{n:"Limoncello", p:"5,90"},{n:"Averna", p:"5,90"},
+   ]},
+   { h:"Frisdranken", items:[
+     {n:"Water Chaudfontaine plat / bruis", p:[["glas","2,90"],["½ L","5,80"],["1 L","11,60"]]},
+     {n:"Coca-Cola / light / zero", p:"2,90"},{n:"Coca-Cola zero 1 L", p:"12,90"},{n:"Sprite", p:"2,90"},
+     {n:"Fanta orange / lemon", p:"3,00"},{n:"Tonic Royal Bliss", p:"3,10"},{n:"Tonic Fever-Tree", p:"4,00"},
+     {n:"Agrum' Royal Bliss", p:"3,10"},{n:"Gini bitter lemon", p:"3,10"},{n:"Fuze tea sparkling", p:"3,10"},
+     {n:"Fuze tea green mango", p:"3,10"},{n:"Tönissteiner citroen / orange / pompelmoes", p:"3,30"},
+     {n:"Tönissteiner vruchten / naranja", p:"3,60"},{n:"Appletiser", p:"4,00"},
+     {n:"Chocolademelk koud", p:"2,90"},{n:"Melk koud", p:"2,70"},{n:"Fristi drinkyoghurt", p:"2,90"},
+     {n:"Vruchtensap Minute Maid", d:"Sinaasappel, pompelmoes, appel-kers, appel", p:"2,90"},
+   ]},
+   { h:"Warme dranken", items:[
+     {n:"Koffie", p:"2,80"},{n:"Espresso", p:"2,80"},{n:"Deca (cafeïnevrij)", p:"2,90"},
+     {n:"Cappuccino (gestoomde melk)", p:"3,40"},{n:"Koffie verkeerd", p:"3,40"},
+     {n:"Koffie met slagroom", p:"3,40"},{n:"Latte macchiato", p:"3,40"},
+     {n:"Siroopsmaakje hazelnoot / karamel", p:"+0,70"},
+     {n:"Ijskoffie", d:"Roomijs en slagroom", p:"5,50"},
+     {n:"Thee", d:"Natuur, citroen, green, linde, kamille, rozenbottel, munt", p:"2,90"},
+     {n:"Verse muntthee", p:"3,40"},{n:"Verse gemberthee", p:"3,40"},
+     {n:"Warme chocolademelk", p:"3,30"},{n:"Warme chocolademelk met slagroom", p:"3,90"},
+   ]},
+   { h:"Koffiespecialiteiten", items:[
+     {n:"Hasseltse koffie", d:"Jenever", p:"5,30"},{n:"Irish coffee", d:"Whisky", p:"7,80"},
+     {n:"French coffee", d:"Cognac", p:"7,80"},{n:"Kippenkoffie", d:"Advocaat", p:"7,80"},
+     {n:"Italian coffee", d:"Amaretto", p:"7,80"},{n:"Sweet coffee", d:"Baileys", p:"7,80"},
+     {n:"Helchterese koffie", d:"Heeborrel", p:"8,10"},
+   ]},
+ ]},
+];
+
+const NOTES = {
+  hoofd:"Supplement frieten, kroketten, puree, gratin, pasta of rijst: 3,20. Sauzen 3,40.",
+  zoet:"Wafels en pannenkoeken zijn er in de namiddag. Bekijk de uren bij elk onderdeel.",
+};
+
+/* ---------- Kaart opbouwen ---------- */
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = v => /^[+]?\d/.test(v) ? (v.startsWith("+") ? "+ € " + v.slice(1) : "€ " + v) : esc(v);
+const tabsEl = document.getElementById("tabs"), panelsEl = document.getElementById("panels");
+
+function priceHTML(p){
+  if (Array.isArray(p)) return `<div class="prices">${p.map(([l,v])=>`<span><em>${esc(l)}</em>${fmt(v)}</span>`).join("")}</div>`;
+  return p ? `<div class="price">${fmt(p)}</div>` : `<div></div>`;
+}
+function dishHTML(it, isDrink){
+  const tags = [];
+  if (it.v) tags.push(`<span class="tag v" title="Vegetarisch">V</span>`);
+  if (it.t) tags.push(`<span class="tag time">${esc(it.t)}</span>`);
+  if (!isDrink && !it.extra){
+    if (it.a && it.a.length) it.a.forEach(a => tags.push(`<span class="tag">${esc(a)}</span>`));
+  }
+  return `<div class="dish" data-veg="${it.v?1:0}">
+    <div><span class="nl">${esc(it.n)}</span></div>
+    ${priceHTML(it.p)}
+    ${it.d ? `<div class="desc">${esc(it.d)}</div>` : ""}
+    ${tags.length ? `<div class="tags">${tags.join("")}</div>` : ""}
+  </div>`;
+}
+const featureHTML = c => `
+  <div class="course feature">
+    <div class="feature-body">
+      <p class="eyebrow" style="margin-bottom:6px">${esc(c.h)}</p>
+      <h3 style="border:0;padding:0;margin:0;color:var(--text)">3 gangen</h3>
+      <div class="big">€ 50,20 <small style="font-size:1rem;color:var(--muted)">p.p.</small></div>
+      <p style="margin:0;color:var(--text)">Hoofdgerecht: keuze vis of vlees.</p>
+      <ul><li>Enkel per tafel</li><li>Kan besteld worden tot 20u30</li><li>Graag vermelden als er voorkeuren of allergieën zijn</li></ul>
+    </div>
+  </div>`;
+
+MENU.forEach((sec, i) => {
+  const tab = document.createElement("button");
+  tab.className = "tab"; tab.id = "tab-" + sec.id;
+  tab.setAttribute("role", "tab");
+  tab.setAttribute("aria-controls", "panel-" + sec.id);
+  tab.setAttribute("aria-selected", i === 0);
+  tab.tabIndex = i === 0 ? 0 : -1;
+  tab.textContent = sec.label;
+  tabsEl.appendChild(tab);
+
+  const panel = document.createElement("div");
+  panel.className = "panel"; panel.id = "panel-" + sec.id;
+  panel.setAttribute("role", "tabpanel"); panel.setAttribute("aria-labelledby", tab.id);
+  panel.hidden = i !== 0;
+  panel.innerHTML =
+    (NOTES[sec.id] ? `<p class="panel-note">${esc(NOTES[sec.id])}</p>` : "") +
+    `<div class="courses">${sec.courses.map(c => c.feature ? featureHTML(c) : `
+      <div class="course">
+        <h3>${esc(c.h)} ${c.sub ? `<small>${esc(c.sub)}</small>` : ""}</h3>
+        ${c.note ? `<p class="course-note">${esc(c.note)}</p>` : ""}
+        ${c.items.map(it => dishHTML(it, sec.drinks)).join("")}
+      </div>`).join("")}</div>`;
+  panelsEl.appendChild(panel);
+});
+
+const tabs = [...tabsEl.querySelectorAll(".tab")];
+function selectTab(t, focus){
+  tabs.forEach(x => { const on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1;
+    document.getElementById(x.getAttribute("aria-controls")).hidden = !on; });
+  t.scrollIntoView({block:"nearest", inline:"center", behavior:"smooth"});
+  if (focus) t.focus();
+  const tools = document.querySelector(".menu-tools"), top = tools.getBoundingClientRect().top;
+  if (top <= header.getBoundingClientRect().bottom + 2)
+    document.getElementById("panels").scrollIntoView({behavior:"smooth"});
+}
+tabsEl.addEventListener("click", e => { const t = e.target.closest(".tab"); if (t) selectTab(t); });
+tabsEl.addEventListener("keydown", e => {
+  const i = tabs.indexOf(document.activeElement); if (i < 0) return;
+  const k = {ArrowRight:1, ArrowLeft:-1}[e.key];
+  if (k){ e.preventDefault(); selectTab(tabs[(i + k + tabs.length) % tabs.length], true); }
+  if (e.key === "Home"){ e.preventDefault(); selectTab(tabs[0], true); }
+  if (e.key === "End"){ e.preventDefault(); selectTab(tabs[tabs.length-1], true); }
+});
+document.getElementById("panels").style.scrollMarginTop = "190px";
+
+document.getElementById("vegOnly").addEventListener("change", e => {
+  const on = e.target.checked;
+  document.querySelectorAll(".dish").forEach(d => d.classList.toggle("hide", on && d.dataset.veg !== "1"));
+  document.querySelectorAll(".course").forEach(c => {
+    const any = c.querySelector(".dish:not(.hide)"); c.style.display = on && !any ? "none" : "";
+  });
+  document.querySelectorAll(".panel").forEach(p => {
+    let m = p.querySelector(".panel-empty");
+    if (!m){ m = document.createElement("p"); m.className = "empty panel-empty"; m.textContent = "Geen vegetarische gerechten in dit onderdeel. Kijk bij Hoofdgerechten of Croques, soep & lunch."; p.appendChild(m); }
+    m.style.display = on && !p.querySelector(".course:not([style*='none'])") ? "block" : "none";
+  });
+});
+
+/* ---------- Openingsuren ---------- */
+// 0 = zondag … 6 = zaterdag. "24:00" = middernacht.
+const HOURS = {1:["11:00","23:00"],2:["11:00","23:00"],3:null,4:["11:00","23:00"],5:["11:00","24:00"],6:["11:00","24:00"],0:["11:00","23:00"]};
+const DAYS = ["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"];
+const ORDER = [1,2,3,4,5,6,0];
+const u = t => { const [h,m] = t.split(":"); return h === "24" ? "00u" : (m === "00" ? `${Number(h)}u` : `${Number(h)}u${m}`); };
+const mins = t => { const [h,m] = t.split(":").map(Number); return h*60+m; };
+const cap = s => s[0].toUpperCase() + s.slice(1);
+
+function brusselsNow(){
+  const parts = new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Brussels",weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date());
+  const get = t => parts.find(p => p.type === t).value;
+  return {day:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(get("weekday")), min:(Number(get("hour")) % 24) * 60 + Number(get("minute"))};
+}
+function updateHours(){
+  const {day, min} = brusselsNow(), h = HOURS[day];
+  const st = document.getElementById("status"), out = document.getElementById("tonight-hours");
+  let open = false, label, line;
+  if (h && min >= mins(h[0]) && min < mins(h[1])){
+    open = true; label = "Nu open";
+    line = `<strong>Vandaag ${u(h[0])} – ${u(h[1])}</strong> · ` + (min < mins("21:30") ? "keuken tot 21u30" : "bar open, keuken gesloten");
+  } else if (h && min < mins(h[0])){
+    label = "Nu gesloten";
+    line = `<strong>Vandaag open vanaf ${u(h[0])}</strong> · tot ${u(h[1])} · keuken 11u – 21u30`;
+  } else {
+    label = h ? "Gesloten voor vandaag" : "Vandaag gesloten (woensdag)";
+    let n = (day + 1) % 7; while (!HOURS[n]) n = (n + 1) % 7;
+    line = `<strong>${n === (day+1)%7 ? "Morgen" : cap(DAYS[n])} open vanaf ${u(HOURS[n][0])}</strong> · tot ${u(HOURS[n][1])}`;
+  }
+  st.className = "status" + (open ? " open" : "");
+  st.querySelector("span").textContent = label;
+  out.innerHTML = line;
+  document.querySelector("#hours-table tbody").innerHTML = ORDER.map(d => {
+    const v = HOURS[d];
+    return `<tr class="${d===day?"today":""} ${v?"":"closed"}"><th scope="row">${cap(DAYS[d])}${d===day?' <span class="sr-only">(vandaag)</span>':''}</th><td>${v ? `${u(v[0])} – ${u(v[1])}` : "Gesloten"}</td></tr>`;
+  }).join("");
+}
+updateHours(); setInterval(updateHours, 60000);
+
+/* ---------- Header, menu, balk, scrollspy, reveal ---------- */
+const header = document.querySelector(".site-header"), bar = document.getElementById("mobile-bar");
+const onScroll = () => { header.classList.toggle("scrolled", scrollY > 20); bar.classList.toggle("show", scrollY > innerHeight * .7); };
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+const toggle = document.querySelector(".menu-toggle"), drawer = document.getElementById("drawer");
+function setDrawer(open){ toggle.setAttribute("aria-expanded", open); toggle.setAttribute("aria-label", open ? "Menu sluiten" : "Menu openen");
+  drawer.classList.toggle("open", open); document.body.style.overflow = open ? "hidden" : ""; header.classList.toggle("scrolled", open || scrollY > 20); }
+toggle.addEventListener("click", () => setDrawer(toggle.getAttribute("aria-expanded") !== "true"));
+drawer.addEventListener("click", e => { if (e.target.closest("a")) setDrawer(false); });
+addEventListener("keydown", e => { if (e.key === "Escape" && drawer.classList.contains("open")) { setDrawer(false); toggle.focus(); } });
+
+const navLinks = [...document.querySelectorAll(".nav a")];
+const spy = new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting) navLinks.forEach(a => a.setAttribute("aria-current", a.getAttribute("href") === "#" + en.target.id));
+}), {rootMargin:"-45% 0px -50% 0px"});
+["menu","story","events","visit","faq"].forEach(id => spy.observe(document.getElementById(id)));
+
+const rv = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add("in"); rv.unobserve(en.target); } }), {threshold:.12});
+document.querySelectorAll(".reveal").forEach(el => rv.observe(el));
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ---------- Aanvraagformulier (mailto; vervang door echte verwerking) ---------- */
+const form = document.getElementById("inquiry");
+document.getElementById("f-date").min = new Date().toISOString().slice(0,10);
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const f = Object.fromEntries(new FormData(form));
+  const errs = {
+    name: !f.name.trim() && "Vul uw naam in.",
+    email: !/^\S+@\S+\.\S+$/.test(f.email) && "Vul een geldig e-mailadres in.",
+    date: !f.date && "Kies een datum.",
+    guests: !(Number(f.guests) >= 2) && "Met hoeveel personen komt u? (minstens 2)",
+  };
+  let first = null;
+  Object.entries(errs).forEach(([k, msg]) => {
+    const input = form.elements[k], el = document.getElementById("e-" + k);
+    input.setAttribute("aria-invalid", !!msg); el.textContent = msg || "";
+    if (msg) input.setAttribute("aria-describedby", "e-" + k);
+    if (msg && !first) first = input;
+  });
+  if (first){ first.focus(); return; }
+  const body = `Naam: ${f.name}\nE-mail: ${f.email}\nTelefoon: ${f.phone || "-"}\nDatum: ${f.date}\nAantal personen: ${f.guests}\nGelegenheid: ${f.occasion}\nInteresse: ${f.menu}\n\n${f.message || ""}`;
+  location.href = `mailto:dennoordkant@telenet.be?subject=${encodeURIComponent("Groepsaanvraag – " + f.guests + " personen op " + f.date)}&body=${encodeURIComponent(body)}`;
+  const s = document.getElementById("form-status");
+  s.textContent = "Bedankt! Uw mailprogramma opent met uw aanvraag klaar om te versturen. We bevestigen de beschikbaarheid zo snel mogelijk.";
+  s.classList.add("show");
+});
+</script>
+</body>
+</html>
