@@ -19,7 +19,8 @@
   --radius:14px; --wrap:1160px; --gutter:clamp(16px,4vw,40px);
   --serif:"Fraunces",Georgia,"Times New Roman",serif;
   --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --header-h:68px;
+  --demo-h:36px; --bar-h:68px;
+  --header-h:calc(var(--demo-h) + var(--bar-h)); /* total fixed area at the top */
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -58,7 +59,10 @@ section{padding-block:clamp(72px,12vw,128px);scroll-margin-top:var(--header-h)}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold-2)}
 
 /* ============ Header ============ */
-.site-header{position:fixed;inset:0 0 auto;z-index:50;height:var(--header-h);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.demo-banner{position:fixed;inset:0 0 auto;z-index:51;height:var(--demo-h);display:flex;align-items:center;justify-content:center;gap:8px;padding:0 12px;background:var(--gold);color:var(--gold-ink);font:600 .8rem/1.2 var(--sans);text-align:center}
+.demo-banner svg{width:16px;height:16px;flex:0 0 auto}
+@media (max-width:380px){.demo-banner{font-size:.72rem}}
+.site-header{position:fixed;top:var(--demo-h);left:0;right:0;z-index:50;height:var(--bar-h);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
 .site-header.scrolled{background:rgba(18,16,13,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--line)}
 .site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-family:var(--serif);font-size:1.3rem}
@@ -68,6 +72,13 @@ section{padding-block:clamp(72px,12vw,128px);scroll-margin-top:var(--header-h)}
 .nav a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;padding:8px 2px}
 .nav a:hover,.nav a[aria-current="true"]{color:var(--gold-2)}
 .header-cta{display:none;min-height:40px;padding:0 18px;font-size:.88rem}
+.header-right{display:flex;align-items:center;gap:10px}
+.header-phone{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:999px;color:var(--text);text-decoration:none;font-weight:600;font-size:.9rem;font-variant-numeric:tabular-nums;background:rgba(18,16,13,.4);white-space:nowrap}
+.header-phone:hover{border-color:var(--gold);color:var(--gold-2)}
+.header-phone svg{width:16px;height:16px;color:var(--gold)}
+@media (max-width:420px){.header-phone .num{display:none}.header-phone{width:44px;padding:0;justify-content:center}}
+.hero-phone{margin-top:14px;color:var(--muted);font-size:.95rem}
+.hero-phone a{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
 .menu-toggle{width:44px;height:44px;display:grid;place-items:center;background:rgba(18,16,13,.4);border:1px solid var(--line);border-radius:10px;color:var(--text);cursor:pointer}
 .menu-toggle span{display:block;width:18px;height:2px;background:currentColor;position:relative}
 .menu-toggle span::before,.menu-toggle span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:currentColor;transition:transform .25s}
@@ -134,9 +145,9 @@ section{padding-block:clamp(72px,12vw,128px);scroll-margin-top:var(--header-h)}
 .panel{padding-top:28px}
 .panel[hidden]{display:none}
 .panel-note{color:var(--muted);font-size:.92rem;border-left:2px solid var(--gold);padding:4px 0 4px 14px;margin:0 0 28px;max-width:70ch}
-.panel-photo{aspect-ratio:21/9;margin-bottom:32px}
-.courses{display:grid;gap:44px}
-@media (min-width:860px){.courses{grid-template-columns:1fr 1fr;gap:48px 64px}}
+/* Columns (not a grid) so each section follows directly under the previous one, without row gaps */
+.courses>.course{break-inside:avoid;margin-bottom:44px}
+@media (min-width:860px){.courses{column-count:2;column-gap:64px}.courses>.course{margin-bottom:48px}}
 .course h3{color:var(--gold-2);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:6px}
 .course h3 small{font:500 .78rem var(--sans);color:var(--muted);letter-spacing:.02em}
 .course .course-note{font-size:.85rem;color:var(--muted);margin:10px 0 4px}
@@ -154,7 +165,6 @@ section{padding-block:clamp(72px,12vw,128px);scroll-margin-top:var(--header-h)}
 .tag.tbc{border-style:dashed;color:var(--faint)}
 .tag.time{color:var(--gold-2);border-color:rgba(214,171,90,.4)}
 .feature{border:1px solid rgba(214,171,90,.45);border-radius:var(--radius);overflow:hidden;background:linear-gradient(160deg,rgba(214,171,90,.1),transparent 60%)}
-.feature .feature-img{aspect-ratio:16/9;border:0;border-radius:0}
 .feature .feature-body{padding:24px}
 .feature .big{font-family:var(--serif);font-size:2.6rem;color:var(--gold-2);line-height:1;margin:8px 0 10px}
 .feature ul{margin:12px 0 0;padding-left:18px;color:var(--muted)}
@@ -268,6 +278,11 @@ footer p{margin:0 0 6px}
 <body>
 <a class="skip" href="#main">Naar de inhoud</a>
 
+<div class="demo-banner" role="note">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+  <span>Deze pagina is niet-actief en louter een demoversie.</span>
+</div>
+
 <header class="site-header" id="top">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="den Noordkant, terug naar boven">
@@ -281,8 +296,14 @@ footer p{margin:0 0 6px}
       <a href="#visit">Bezoek</a>
       <a href="#faq">Vragen</a>
     </nav>
-    <a class="btn btn-gold header-cta" href="#reserve">Reserveer een tafel</a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu openen"><span></span></button>
+    <div class="header-right">
+      <a class="header-phone" href="tel:+3211757861" aria-label="Bel 011 75 78 61">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+        <span class="num">011 75 78 61</span>
+      </a>
+      <a class="btn btn-gold header-cta" href="#reserve">Reserveer een tafel</a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu openen"><span></span></button>
+    </div>
   </div>
 </header>
 
@@ -308,6 +329,7 @@ footer p{margin:0 0 6px}
       <a class="btn btn-gold" href="#reserve">Reserveer een tafel</a>
       <a class="btn btn-ghost" href="#menu">Bekijk de kaart</a>
     </div>
+    <p class="hero-phone">Reserveren kan telefonisch op <a href="tel:+3211757861">011 75 78 61</a></p>
     <div class="tonight" aria-live="polite">
       <span class="status" id="status"><i></i><span>Openingsuren laden…</span></span>
       <span class="hours" id="tonight-hours">Open van 11u tot 23u · vr &amp; za tot middernacht · woensdag gesloten</span>
@@ -318,10 +340,11 @@ footer p{margin:0 0 6px}
 <!-- ============ FOOD STRIP ============ -->
 <section class="strip" aria-label="Uit onze keuken">
   <div class="strip-grid">
-    <figure class="photo"><img src="images/pasta-vis-schaaldieren.jpg" alt="Pasta met dagverse vis, mosselen, scampi en zalm" loading="lazy"><figcaption>Pasta vis &amp; schaaldieren</figcaption></figure>
-    <figure class="photo"><img src="images/tagliatelle-scampi.jpg" alt="Tagliatelle met scampi en tomatensaus" loading="lazy"><figcaption>Tagliatelle scampi</figcaption></figure>
-    <figure class="photo"><img src="images/visbord.jpg" alt="Bord met gerookte vis, grijze garnalen, appel en citroen" loading="lazy"><figcaption>Vis &amp; grijze garnalen</figcaption></figure>
-    <figure class="photo"><img src="images/terras-cristal.jpg" alt="Glas Cristal op het zonnige terras" loading="lazy"><figcaption>Een frisse pint</figcaption></figure>
+    <figure class="photo"><img src="images/pasta-vis-schaaldieren.jpg" alt="Pasta met dagverse vis en schaaldieren: mosselen, scampi en zalm" loading="lazy"><figcaption>Pasta met dagverse vis &amp; schaaldieren</figcaption></figure>
+    <figure class="photo"><img src="images/tagliatelle-scampi.jpg" alt="Tagliatelle met scampi en tomatensaus" loading="lazy"><figcaption>Tagliatelle met scampi &amp; tomatensaus</figcaption></figure>
+    <!-- Dit bord (gerookte vis, grijze garnalen, appel) komt niet als apart gerecht op de kaart voor: daarom een neutraal onderschrift. -->
+    <figure class="photo"><img src="images/visbord.jpg" alt="Bord met gerookte vis, grijze garnalen, appel en citroen" loading="lazy"><figcaption>Uit onze keuken</figcaption></figure>
+    <figure class="photo"><img src="images/terras-cristal.jpg" alt="Glas Cristal op het zonnige terras" loading="lazy"><figcaption>Een frisse Cristal</figcaption></figure>
   </div>
 </section>
 
@@ -359,9 +382,7 @@ footer p{margin:0 0 6px}
         <p class="eyebrow">Onze zaak</p>
         <h2 id="story-title">Een brasserie aan de noordkant van het plein</h2>
         <p class="lede" style="margin-top:20px">Zin in een lekkere maaltijd, of gewoon een gezellige babbel met een drankje? Bij ons ben je altijd welkom. De keuken is doorlopend open van 11u tot 21u30: lunchen om twee uur of dineren om negen uur, het kan allebei.</p>
-        <p class="quote">"Wil je eens lekker eten, of gezellig iets drinken, kan je altijd bij ons terecht."<small>Onze belofte, al van in het begin.</small></p>
-        <p style="color:var(--muted)">den Noordkant wordt uitgebaat door <span class="ph">[naam uitbater(s) / chef]</span> <span class="ph">[sinds jaartal]</span>. <span class="ph">[2–3 zinnen over wie er achter de toog en aan het fornuis staat, en hoe het begon.]</span></p>
-      </div>
+        <p class="quote">"Wil je eens lekker eten, of gezellig iets drinken, kan je altijd bij ons terecht."<small>Onze belofte, al van in het begin.</small></p>      </div>
       <div class="collage reveal">
         <figure class="photo main"><img src="images/interieur-bar.jpg" alt="Het interieur van de brasserie met lange houten toog, barkrukken en een geblokte vloer" loading="lazy"></figure>
         <figure class="photo inset"><img src="images/tafel-dekken.jpg" alt="Een lange tafel wordt gedekt met kaarsjes en bloemen" loading="lazy"></figure>
@@ -377,7 +398,7 @@ footer p{margin:0 0 6px}
       <article class="pillar reveal">
         <figure class="photo"><img src="images/keuken.jpg" alt="De professionele keuken van den Noordkant" loading="lazy"></figure>
         <h3>Vers, elke dag</h3>
-        <p>Vis van het moment, pasta met dagverse vis en schaaldieren, verse zalm en mosselen aan seizoenprijs. Aardbeien komen op de kaart als ze in het seizoen zijn. <span class="ph">[Leveranciers: slager, visboer…]</span></p>
+        <p>Vis van het moment, pasta met dagverse vis en schaaldieren, verse zalm en mosselen aan seizoenprijs. Aardbeien komen op de kaart als ze in het seizoen zijn.</p>
       </article>
       <article class="pillar reveal">
         <figure class="photo"><img src="images/interieur-avond.jpg" alt="De eetzaal 's avonds bij kaarslicht onder grote lampenkappen" loading="lazy"></figure>
@@ -394,7 +415,7 @@ footer p{margin:0 0 6px}
   <div class="wrap">
     <p class="eyebrow">Ons terras</p>
     <h2 id="terras-title">Bij zonnig weer: buiten</h2>
-    <p>Een beschut terras tussen het groen, onder de grote parasols. Ideaal voor een aperitief, een wafel in de namiddag of een frisse pint. <span class="ph">[Aantal plaatsen op het terras]</span></p>
+    <p>Een beschut terras tussen het groen, onder de grote parasols. Ideaal voor een aperitief, een wafel in de namiddag of een frisse pint.</p>
   </div>
 </section>
 
@@ -563,7 +584,7 @@ footer p{margin:0 0 6px}
    a = allergenen (leeg → "Allergenen n.t.b."), extra = supplement.
    ========================================================= */
 const MENU = [
- { id:"vooraf", label:"Vooraf & kleine gerechten", photo:["images/visbord.jpg","Bord met gerookte vis en grijze garnalen"], courses:[
+ { id:"vooraf", label:"Vooraf & kleine gerechten", courses:[
    { h:"Vooraf", items:[
      {n:"Slaatje met verse zalm en grijze garnalen", p:"18,10"},
      {n:"Scampi natuur", d:"5 stuks", p:"19,10"},
@@ -571,6 +592,11 @@ const MENU = [
      {n:"Carpaccio van ossenhaas", p:"19,40"},
      {n:"Lookbroodjes", d:"6 stuks", p:"8,40"},
      {n:"Bruschetta", d:"4 stuks", p:"9,60"},
+   ]},
+   { h:"Babbelhapjes", items:[
+     {n:"Portie kaas", p:"5,90"},{n:"Portie salami", p:"5,90"},{n:"Portie kaas en salami", p:"12,00"},
+     {n:"Portie bitterballen", p:"7,30"},{n:"Portie gemengd", p:"8,90"},{n:"Portie olijven", p:"4,90"},
+     {n:"Portie calamares met verse tartaar", p:"8,90"},
    ]},
    { h:"Kleine gerechten", items:[
      {n:"Witloof met ham en kaassaus", p:"15,90", t:"oktober t/m maart"},
@@ -586,13 +612,8 @@ const MENU = [
      {n:"Wrap met rundsreepjes", p:"20,70"},
      {n:"Supplement", d:"Frieten, kroketten, puree, gratin, pasta, rijst", p:"3,20", extra:true},
    ]},
-   { h:"Babbelhapjes", items:[
-     {n:"Portie kaas", p:"5,90"},{n:"Portie salami", p:"5,90"},{n:"Portie kaas en salami", p:"12,00"},
-     {n:"Portie bitterballen", p:"7,30"},{n:"Portie gemengd", p:"8,90"},{n:"Portie olijven", p:"4,90"},
-     {n:"Portie calamares met verse tartaar", p:"8,90"},
-   ]},
  ]},
- { id:"hoofd", label:"Hoofdgerechten", photo:["images/pasta-vis-schaaldieren.jpg","Pasta met dagverse vis en schaaldieren"], courses:[
+ { id:"hoofd", label:"Hoofdgerechten", courses:[
    { h:"Vleesgerechten", note:"Kies je bakwijze: bleu (rood vanbinnen, rauw maar warm), saignant (rood vanbinnen), à point (rosé vanbinnen) of bien cuit (volledig doorbakken).", items:[
      {n:"Filet pur natuur", p:"42,40"},
      {n:"Steak natuur", p:"33,00"},
@@ -653,7 +674,7 @@ const MENU = [
      {n:"Verse ravioli gevuld met ricotta, spinazie en tomatensaus", p:"22,80", v:true},
    ]},
  ]},
- { id:"lunch", label:"Croques, soep & lunch", photo:["images/gevel-terras.jpg","Het terras voor de brasserie"], courses:[
+ { id:"lunch", label:"Croques, soep & lunch", courses:[
    { h:"Croques", sub:"enkel / dubbel", items:[
      {n:"Croque uit het vuistje", p:"4,40"},
      {n:"Croque Monsieur", p:[["enkel","8,80"],["dubbel","13,20"]]},
@@ -718,7 +739,7 @@ const MENU = [
      {n:"Aardbeien", p:"dagprijs", t:"seizoen"},
    ]},
  ]},
- { id:"dranken", label:"Dranken", drinks:true, photo:["images/terras-cristal.jpg","Een glas Cristal op het terras"], courses:[
+ { id:"dranken", label:"Dranken", drinks:true, courses:[
    { h:"Aperitieven", items:[
      {n:"Aperitief Noordkant (Dark'n Stormy)", d:"Rum, ginger ale, limoen, munt", p:"11,80"},
      {n:"Aperitief van het huis", d:"Cava, limoncello", p:"7,50"},
@@ -842,7 +863,6 @@ function dishHTML(it, isDrink){
 }
 const featureHTML = c => `
   <div class="course feature">
-    <figure class="photo feature-img"><img src="images/tagliatelle-scampi.jpg" alt="Tagliatelle met scampi" loading="lazy"></figure>
     <div class="feature-body">
       <p class="eyebrow" style="margin-bottom:6px">${esc(c.h)}</p>
       <h3 style="border:0;padding:0;margin:0;color:var(--text)">3 gangen</h3>
@@ -867,7 +887,6 @@ MENU.forEach((sec, i) => {
   panel.setAttribute("role", "tabpanel"); panel.setAttribute("aria-labelledby", tab.id);
   panel.hidden = i !== 0;
   panel.innerHTML =
-    (sec.photo ? `<figure class="photo panel-photo"><img src="${sec.photo[0]}" alt="${esc(sec.photo[1])}" loading="lazy"></figure>` : "") +
     (NOTES[sec.id] ? `<p class="panel-note">${esc(NOTES[sec.id])}</p>` : "") +
     `<div class="courses">${sec.courses.map(c => c.feature ? featureHTML(c) : `
       <div class="course">
@@ -885,7 +904,7 @@ function selectTab(t, focus){
   t.scrollIntoView({block:"nearest", inline:"center", behavior:"smooth"});
   if (focus) t.focus();
   const tools = document.querySelector(".menu-tools"), top = tools.getBoundingClientRect().top;
-  if (top <= parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) + 2)
+  if (top <= header.getBoundingClientRect().bottom + 2)
     document.getElementById("panels").scrollIntoView({behavior:"smooth"});
 }
 tabsEl.addEventListener("click", e => { const t = e.target.closest(".tab"); if (t) selectTab(t); });
